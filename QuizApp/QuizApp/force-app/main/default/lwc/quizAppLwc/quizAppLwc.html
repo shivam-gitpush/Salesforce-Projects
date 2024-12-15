@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Quiz App in LWC">
+        <div class="slds-p-around-medium">
+            Here goes our lightning app.
+            <template if:true={isSubmitted}>
+                <div class={hasScoredFull}>You have scored {correctAnswers} out of {myQuestions.length}</div>
+            </template>
+            <form>
+            <template for:each={myQuestions} for:item="question">
+                <div key={question.id} class="slds-m-bottom_medium">
+                    <div><strong>{question.id} - {question.question}</strong></div>
+                    <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                        <div class="slds-col">
+                            <input type="radio" name={question.id} value="a" onchange={changeHandler}/>
+                            {question.choices.a}
+                        </div>
+                        <div class="slds-col">
+                            <input type="radio" name={question.id} value="b" onchange={changeHandler}/>
+                            {question.choices.b}
+                        </div>
+                        <div class="slds-col">
+                            <input type="radio" name={question.id} value="c" onchange={changeHandler}/>
+                            {question.choices.c}
+                        </div>
+                        <div class="slds-col">
+                            <input type="radio" name={question.id} value="d" onchange={changeHandler}/>
+                            {question.choices.d}
+                        </div>
+                    </div>
+                </div> 
+            </template>
+            <lightning-button variant="brand" type="submit" label="Submit" class="slds-m-around_medium" onclick={submitHandler} disabled={allNotSelected}></lightning-button>
+            <lightning-button variant="brand" type="reset" label="Reset" class="slds-m-around_medium" onclick={resetHandler}></lightning-button>
+            
+        </form>
+        </div>
+
+    </lightning-card>
+</template>
